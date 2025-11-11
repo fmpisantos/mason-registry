@@ -16,4 +16,4 @@ source:
 
 share:
   vscode-java-debug/: extension/server/
-  vscode-java-debug/com.microsoft.java.debug.plugin.jar: extension/server/com.microsoft.java.debug.plugin-0.58.2.jar
+  vscode-java-debug/com.microsoft.java.debug.plugin.jar: extension/server/com.microsoft.java.debug.plugin-0.53.2.jar
