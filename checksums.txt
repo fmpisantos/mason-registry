@@ -1,1 +1,0 @@
-bad4dd98432880f4c43b5c65df1eefca5a0678b3984078e21caafa02f8907bc6  registry.json.zip
