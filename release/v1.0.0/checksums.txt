@@ -1,1 +1,1 @@
-bad4dd98432880f4c43b5c65df1eefca5a0678b3984078e21caafa02f8907bc6  registry.json.zip
+17f0e5e8a33e650b4be5f2a3f686dc4e9a0c0aad7c63afd0e80b7089abe5f52d  registry.json.zip

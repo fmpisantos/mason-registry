@@ -1,76 +1,18 @@
 # Mason Registry Agent Guidelines
 
 ## Build/Lint/Test Commands
-
-### Linting
-- **YAML syntax validation**: Use `yamllint` to check YAML syntax and formatting
-- **Schema validation**: Package definitions must validate against the [mason registry schema](https://github.com/mason-org/registry-schema)
-- **Registry lint**: Run `mason-org/actions/registry-lint@v1` (used in CI)
-
-### Testing
-- **Local testing**: Configure mason.nvim to source packages locally:
-  ```lua
-  require("mason").setup {
-    registries = {
-      "file:~/path/to/mason-registry"
-    }
-  }
-  ```
-- **Install testing**: Use `:MasonInstall <package>` to test package installation
-- **Cross-platform testing**: Use `:MasonInstall --target=<platform> <package>` to test different platforms
-
-### Prerequisites
-- Install `yq` for YAML processing: `:MasonInstall yq`
-- Use YAML language server for real-time validation and autocompletion
+- **Lint**: `yamllint packages/*/package.yaml` for YAML syntax; use `mason-org/actions/registry-lint@v1` for schema validation
+- **Test single package**: Configure mason locally with `registries = {"file:~/path/to/mason-registry"}`, then `:MasonInstall <package>`
+- **Cross-platform test**: `:MasonInstall --target=<platform> <package>` (e.g., linux_x64_gnu, darwin_arm64)
+- **Prerequisites**: Install `yq` via `:MasonInstall yq` for YAML processing
 
 ## Code Style Guidelines
-
-### YAML Formatting
-- Use 2-space indentation
-- Start documents with `---`
-- Max line length: 120 characters
-- Use `|` for multi-line descriptions with proper text wrapping
-
-### Package Structure
-- Files must be located at `packages/<package-name>/package.yaml`
-- Follow the [package specification](https://github.com/mason-org/mason-registry/blob/main/CONTRIBUTING.md#package-specification)
-
-### Naming Conventions
-- Package names must be unique and follow the naming scheme in CONTRIBUTING.md
-- Use upstream names when unambiguous
-- Add clarifying prefixes/suffixes for ambiguous names
-- Language-specific servers: `<language>-language-server`
-
-### Field Requirements
-- **name**: Unique, follows naming guidelines
-- **description**: Sourced from upstream, split on multiple lines if long
-- **homepage**: Well-formed URL (http/https), public website or source code
-- **licenses**: SPDX-compatible identifiers (e.g., MIT, Apache-2.0, GPL-3.0-only)
-- **languages**: Consistent casing with other packages
-- **categories**: One of: Compiler, DAP, Formatter, LSP, Linter, Runtime
-
-### Source Definition
-- Must include `id` with purl-compatible identifier
-- Must contain version component
-- Use appropriate qualifiers for package managers (features, repository_url, etc.)
-
-### Expressions
-- Use `{{expr}}` syntax for dynamic values
-- Support basic Lua syntax with transformation functions
-- Common: `{{ version | strip_prefix "v" }}`
-
-### Platform Support
-- Specify `supported_platforms` when package doesn't support all platforms
-- Use appropriate target identifiers (linux_x64_gnu, darwin_arm64, etc.)
-- GNU binaries must use `_gnu` suffix
-
-### Error Handling
-- Validate all URLs are accessible
-- Ensure all referenced files exist in packages
-- Check that bin/share/opt paths are correct
-- Verify expressions evaluate correctly
-
-### Security
-- Only include packages meeting the requirements (100+ stars, 5000+ downloads, etc.)
-- Use proper SPDX license identifiers
-- Avoid packages with proprietary licenses unless approved
+- **YAML formatting**: 2-space indent, start with `---`, max 120 chars/line, use `|` for multi-line descriptions
+- **Package structure**: Place in `packages/<name>/package.yaml`; follow [package spec](https://github.com/mason-org/mason-registry/blob/main/CONTRIBUTING.md#package-specification)
+- **Naming**: Unique names following CONTRIBUTING.md; use upstream names, add prefixes/suffixes for clarity; `<language>-language-server` for LSPs
+- **Required fields**: name, description (from upstream), homepage (valid URL), licenses (SPDX), languages, categories (Compiler|DAP|Formatter|LSP|Linter|Runtime)
+- **Source**: Include `id` with purl-compatible identifier and version; use qualifiers for package managers
+- **Expressions**: Use `{{expr}}` for dynamic values with Lua syntax; common: `{{ version | strip_prefix "v" }}`
+- **Platform support**: Specify `supported_platforms` if not universal; use correct target IDs; GNU binaries need `_gnu` suffix
+- **Error handling**: Validate URLs, verify file paths exist, check bin/share/opt paths, test expressions
+- **Security**: Only approved packages (100+ stars, 5000+ downloads); use proper SPDX licenses; avoid proprietary unless approved
