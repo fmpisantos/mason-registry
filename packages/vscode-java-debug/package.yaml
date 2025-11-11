@@ -1,5 +1,5 @@
 ---
-name: vscode-java-debug
+name: vscode-java-debug-17
 description: The debug server implementation for Java. It conforms to the debugger adapter protocol.
 homepage: https://github.com/microsoft/java-debug
 licenses:

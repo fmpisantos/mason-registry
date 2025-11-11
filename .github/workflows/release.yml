@@ -78,5 +78,6 @@ jobs:
           files: |
             registry.json.zip
             checksums.txt
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
