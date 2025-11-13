@@ -43,6 +43,10 @@ bin:
   jdtls: python:bin/jdtls
 
 share:
-  jdtls/plugins/: plugins/
-  jdtls/config/: "{{source.download.config}}"
   jdtls/lombok.jar: lombok.jar
+  jdtls/plugins/: plugins/
+  jdtls/plugins/org.eclipse.equinox.launcher.jar: plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar
+  jdtls/config/: "{{source.download.config}}"
+
+neovim:
+  lspconfig: jdtls
