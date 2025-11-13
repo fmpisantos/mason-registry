@@ -1,5 +1,5 @@
 ---
-name: vscode-java-test
+name: java-test
 description: |
   The Test Runner for Java works with java-debug-adapter to provide the following features:
   - Run/Debug test cases
