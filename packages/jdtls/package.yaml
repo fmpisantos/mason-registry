@@ -1,5 +1,5 @@
 ---
-name: jdtls-17
+name: jdtls
 description: Java language server.
 homepage: https://github.com/eclipse/eclipse.jdt.ls
 licenses:
